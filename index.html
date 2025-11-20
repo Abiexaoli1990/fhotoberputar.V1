@@ -116,6 +116,25 @@
             box-shadow: 0 5px 20px rgba(47, 147, 218, 1);
         }
 
+        /* CSS untuk Tombol Musik */
+        #music-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: none; /* Sembunyikan secara default */
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
         /* --- MEDIA QUERY: VERSI MOBILE (Layar kurang dari 600px) --- */
         @media screen and (max-width: 600px) {
             .box {
@@ -142,6 +161,16 @@
 </head>
 <body>
 
+    <!-- Tag Audio: Autoplay dan Muted agar bisa jalan otomatis di semua browser -->
+    <!-- Ganti 'URL_MUSIK_ANDA.mp3' dengan URL file musik MP3 yang valid. -->
+    <audio id="background-music" autoplay loop muted>
+        <source src="https://forum.orcastonecoin.com/wp-content/uploads/2025/11/DJ-SHOLAWAT__-ANALIFIKUM-TRAP-PARTY-X-BANJARI-__-GUFF-RMX-FT-JH-AUDIO‼️.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <!-- Tombol Unmute -->
+    <button id="music-toggle" onclick="toggleMusic()">🔇</button>
+
     <div class="box">
         <span style="--i:1"><img src="https://png.pngtree.com/background/20250109/original/pngtree-cartoon-kids-walking-wallpaper-picture-image_15160714.jpg" alt="Gallery Image 1"></span>
         <span style="--i:2"><img src="https://img.freepik.com/foto-gratis/karakter-kartun-3d_23-2151021986.jpg?semt=ais_hybrid&w=740&q=80" alt="Gallery Image 2"></span>
@@ -161,6 +190,27 @@
         <a href="https://web.facebook.com/AbieXaoliRea" target="_blank" class="nav-button-bottom">TELEGRAM</a>
         <a href="https://web.facebook.com/AbieXaoliRea" target="_blank" class="nav-button-bottom">WEBSITE</a>
     </div>
+
+    <script>
+        const music = document.getElementById('background-music');
+        const musicToggleBtn = document.getElementById('music-toggle');
+
+        function toggleMusic() {
+            if (music.muted) {
+                music.muted = false; // Menyalakan suara
+                musicToggleBtn.textContent = '🔊'; // Ganti ikon menjadi suara hidup
+            } else {
+                music.muted = true; // Mematikan suara
+                musicToggleBtn.textContent = '🔇'; // Ganti ikon menjadi suara mati
+            }
+        }
+
+        // Tampilkan tombol musik setelah halaman dimuat
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Karena kita mulai dengan muted autoplay, tombol mute/unmute harus terlihat
+            musicToggleBtn.style.display = 'flex'; 
+        });
+    </script>
     
 </body>
 </html>
